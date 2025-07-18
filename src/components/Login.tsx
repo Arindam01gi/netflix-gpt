@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Header from './Header'
 import { z } from 'zod'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
 
@@ -44,8 +46,39 @@ const Login = () => {
       });
 
       setErrors({});
-      console.log("Form data is valid:", validatedData);
-      // Proceed with form submission (e.g., API call)
+
+      if (!isSignInForm) {
+        //Sign Up Logic
+        createUserWithEmailAndPassword(auth, formData.email, formData.password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("user", user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+
+
+      } else {
+        // Sign In Logic
+        signInWithEmailAndPassword(auth, formData.email, formData.password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+
+      }
+
+
+
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
@@ -61,10 +94,12 @@ const Login = () => {
   return (
     <div className='bg-gradient-to-b from-black'>
       <Header />
-      <div className='absolute'>
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/7d2359a4-434f-4efa-9ff3-e9d38a8bde7f/web/IN-en-20250707-TRIFECTA-perspective_4faa9280-a2c5-4e07-aafc-a45ce43fea09_medium.jpg" alt="background-image" />
-      </div>
-      <form className='bg-black opacity-90 text-black py-24 absolute flex flex-col w-1/3 justify-center items-center my-36  mx-auto left-0 right-0 gap-4 text-white rounded-md' onSubmit={handleSubmit} >
+      <div className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(https://assets.nflxext.com/ffe/siteui/vlv3/7d2359a4-434f-4efa-9ff3-e9d38a8bde7f/web/IN-en-20250707-TRIFECTA-perspective_4faa9280-a2c5-4e07-aafc-a45ce43fea09_medium.jpg)',
+        }}
+      />
+      <form className='bg-black opacity-90 text-black my-24 py-12 absolute flex flex-col w-1/3 justify-center items-center my-36  mx-auto left-0 right-0 gap-4 text-white rounded-md' onSubmit={handleSubmit} >
         <div className='w-2/3 text-left m-2'>
           <p className='text-white text-4xl  font-bold'>  {isSignInForm ? "Sign In" : "Sign Up"}  </p>
         </div>
