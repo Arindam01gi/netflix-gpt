@@ -59,6 +59,7 @@ const Login = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            setErrors({ firebase: errorMessage }); // Use a consistent key like 'firebase'
           });
 
 
@@ -73,6 +74,7 @@ const Login = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            setErrors({ firebase: errorMessage }); // Use the same key
           });
 
       }
@@ -146,6 +148,9 @@ const Login = () => {
         <button className='bg-red-800 text-white w-2/3 px-6 py-2 font-semibold rounded-sm cursor-pointer'>
           {isSignInForm ? 'Sign In ' : 'Sign Up'}
         </button>
+        {errors.firebase && (
+          <p className="text-red-500 text-sm">{errors.firebase}</p>
+        )}
         <div className='w-2/3 text-left m-2 cursor-pointer' onClick={handleToggleForm}>
           {isSignInForm ? <p className='text-lg'>New to Netflix? <span className='font-bold '>Sign up now.</span> </p> : <p className='text-lg'>Already registered? <span className='font-bold '>Sign in now.</span> </p>}
         </div>
