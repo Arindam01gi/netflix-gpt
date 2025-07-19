@@ -3,6 +3,7 @@ import Header from './Header'
 import { z } from 'zod'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -13,6 +14,7 @@ const Login = () => {
     password: ''
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const navigate = useNavigate()
 
 
   const userSchema = z.object({
@@ -54,13 +56,15 @@ const Login = () => {
             // Signed in 
             const user = userCredential.user;
             console.log("user", user)
-            // ...
+            navigate("/browse")
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             setErrors({ firebase: errorMessage }); // Use a consistent key like 'firebase'
           });
+
+          
 
 
       } else {
@@ -69,13 +73,14 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            // ...
+            navigate("/browse")
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             setErrors({ firebase: errorMessage }); // Use the same key
           });
+          
 
       }
 
