@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Header from './Header'
 import { z } from 'zod'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
 
@@ -15,6 +17,7 @@ const Login = () => {
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   const userSchema = z.object({
@@ -55,17 +58,28 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            console.log("user", user)
-            navigate("/browse")
+            updateProfile(user, {
+              displayName: formData.name
+            }).then(() => {
+              const user = auth.currentUser;
+              if (!user) {
+                throw new Error("User not authenticated");
+              }
+              const { uid, email, displayName } = user;
+              dispatch(addUser({ uid, email, displayName }));
+              console.log("Profile updated with displayName");
+              navigate("/browse");
+            }).catch((error) => {
+              const errorMessage = error.message;
+              setErrors({ firebase: errorMessage });
+
+            })
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            setErrors({ firebase: errorMessage }); // Use a consistent key like 'firebase'
+            setErrors({ firebase: errorMessage });
           });
-
-          
-
 
       } else {
         // Sign In Logic
@@ -73,6 +87,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            console.log("user", user)
             navigate("/browse")
           })
           .catch((error) => {
@@ -80,7 +95,7 @@ const Login = () => {
             const errorMessage = error.message;
             setErrors({ firebase: errorMessage }); // Use the same key
           });
-          
+
 
       }
 
