@@ -68,7 +68,6 @@ const Login = () => {
               const { uid, email, displayName } = user;
               dispatch(addUser({ uid, email, displayName }));
               console.log("Profile updated with displayName");
-              navigate("/browse");
             }).catch((error) => {
               const errorMessage = error.message;
               setErrors({ firebase: errorMessage });
@@ -88,7 +87,6 @@ const Login = () => {
             // Signed in 
             const user = userCredential.user;
             console.log("user", user)
-            navigate("/browse")
           })
           .catch((error) => {
             const errorCode = error.code;

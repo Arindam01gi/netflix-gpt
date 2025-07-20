@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import userIcon from '../assets/user_icon.jpg'
-import { useSelector } from 'react-redux'
-import { signOut } from "firebase/auth";
+import { useDispatch, useSelector } from 'react-redux'
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { addUser,removeUser } from '../utils/userSlice';
 
 const Header = () => {
   const [menuOpen ,setMenuOpen] = useState(false)
   const user = useSelector((state) => state.user); 
   const navigate = useNavigate()
-  console.log("user",user)
+  const dispatch = useDispatch()
+
+  
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
+        navigate("/browse")
+      } else {
+        // User is signed out
+        dispatch(removeUser())
+        navigate("/")
+      }
+    });
+  }, [])
  
   const handleMenuClick = () =>{
    setMenuOpen(!menuOpen)
@@ -18,7 +34,6 @@ const Header = () => {
   const handleSignOut = () =>{
     signOut(auth).then(() => {
       // Sign-out successful.
-      navigate("/")
     }).catch((error) => {
       console.log(error)
        navigate("/error")
