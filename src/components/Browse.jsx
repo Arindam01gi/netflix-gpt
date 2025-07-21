@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './Header'
 import UseNowPlayingMovies from '../hooks/useNowPlayingMovies'
+import MainContainer from './MainContainer'
+import SecondaryContainer from './SecondaryContainer'
 
 
 
@@ -9,9 +11,11 @@ const Browse = () => {
 
 
   return (
-    <div className="mt-12">
-      <div className="flex items-center justify-between w-full">
+    <div >
+      <div className="flex  flex-col justify-between w-full">
         <Header />
+        <MainContainer />
+        <SecondaryContainer/>
       </div>
     </div>
   )
