@@ -9,7 +9,7 @@ const MainContainer = () => {
     if (!movies) return null
 
     const mainMovie = movies[0]
-    console.log(mainMovie)
+    // console.log(mainMovie)
     return (
         <div className="h-screen flex items-center ">
             <VideoTitle original_title={mainMovie.original_title} overview={mainMovie.overview} />

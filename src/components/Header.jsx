@@ -43,7 +43,7 @@ const Header = () => {
   }
 
   return (
-    <div className='absolute h-24 px-32 py-2 bg-gradient-to-b from-black w-full z-10 flex justify-between items-center'>
+    <div className='fixed h-24 px-32 bg-gradient-to-b from-black w-full z-10 flex justify-between items-center'>
       <div className='w-48'>
         <img
           src={LOGO}
