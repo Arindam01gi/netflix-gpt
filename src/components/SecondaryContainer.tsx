@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux'
 
 const SecondaryContainer = () => {
   const movies = useSelector((store : any)=> store.movies)
+  console.log("here")
   return (
-    <div>
-      <MovieList title={"Now Playing"} movies= {movies.nowPlayingMovies}/>
+    <div className='overflow-x-hidden'>
+      {movies.nowPlayingMovies && <MovieList title={"Now Playing"} movies= {movies.nowPlayingMovies}/>}
     </div>
   )
 }
