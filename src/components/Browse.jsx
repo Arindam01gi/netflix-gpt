@@ -1,13 +1,21 @@
 import React from 'react'
 import Header from './Header'
-import UseNowPlayingMovies from '../hooks/useNowPlayingMovies'
+import useNowPlayingMovies from '../hooks/useNowPlayingMovies'
 import MainContainer from './MainContainer'
 import SecondaryContainer from './SecondaryContainer'
+import usePopularMovies from '../hooks/usePopularMovies'
+import useTopRatedMovies from '../hooks/useTopRatedMovies'
+
 
 
 
 const Browse = () => {
- UseNowPlayingMovies() 
+  useNowPlayingMovies()
+  usePopularMovies()
+  useTopRatedMovies()
+
+ 
+
 
 
   return (
@@ -15,7 +23,7 @@ const Browse = () => {
       <div className="flex  flex-col justify-between w-full">
         <Header />
         <MainContainer />
-        <SecondaryContainer/>
+        <SecondaryContainer />
       </div>
     </div>
   )
