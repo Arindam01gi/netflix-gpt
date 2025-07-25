@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const SecondaryContainer = () => {
   const movies = useSelector((store : any)=> store.movies)
   return (
-    <>
+    <div className='-mt-40 z-20'>
     <div className='overflow-x-hidden my-5'>
       {movies.nowPlayingMovies && <MovieList title={"Now Playing"} movies= {movies.nowPlayingMovies}/>}
     </div>
@@ -19,7 +19,7 @@ const SecondaryContainer = () => {
       {movies.upcomingMovies && <MovieList title={"Upcoming "} movies= {movies.upcomingMovies}/>}
     </div>
 
-    </>
+    </div>
   )
 }
 
