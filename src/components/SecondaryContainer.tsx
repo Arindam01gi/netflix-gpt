@@ -15,6 +15,9 @@ const SecondaryContainer = () => {
     <div className='overflow-x-hidden my-5'>
       {movies.topRatedMovies && <MovieList title={"Top Rated "} movies= {movies.topRatedMovies}/>}
     </div>
+    <div className='overflow-x-hidden my-5'>
+      {movies.upcomingMovies && <MovieList title={"Upcoming "} movies= {movies.upcomingMovies}/>}
+    </div>
 
     </>
   )
