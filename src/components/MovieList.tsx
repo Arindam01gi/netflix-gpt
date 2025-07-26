@@ -17,8 +17,8 @@ const MovieList = ({ title, movies } : {title : string , movies : Array<any>}) =
           <h2 className='text-white font-bold text-2xl py-4'>{title}</h2>
           {/* Replace Slider with Swiper */}
           <Swiper
-            spaceBetween={10} // Adjust space between slides as needed, e.g., 10px
-            slidesPerView={7.5} // Show 10 and a half cards
+            spaceBetween={10} 
+            slidesPerView={7.5} 
             freeMode={true} 
             pagination={{
               clickable: true,
