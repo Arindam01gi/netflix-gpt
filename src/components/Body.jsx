@@ -3,6 +3,8 @@ import Login from './Login'
 import Browse from './Browse'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Search from './Search'
+import Header from './Header' // Import the Header component
+import { Outlet } from 'react-router-dom' // Import Outlet for nested routes
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -11,12 +13,22 @@ const Body = () => {
       element: <Login />
     },
     {
-      path: "/browse",
-      element: <Browse />
-    },
-    {
-      path : "/search",
-      element : <Search />
+      element: (
+        <>
+          <Header />
+          <Outlet />
+        </>
+      ),
+      children: [
+        {
+          path: "/browse",
+          element: <Browse />
+        },
+        {
+          path: "/search",
+          element: <Search />
+        }
+      ]
     }
   ])
 
