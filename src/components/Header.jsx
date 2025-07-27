@@ -5,14 +5,14 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../store/userSlice';
-import { LOGO } from '../utils/constant';
+import { LOGO, SUPPORTED_LANGUAGE } from '../utils/constant';
+import { chnageLanguage } from '../store/configSlice';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const user = useSelector((state) => state.user);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -21,7 +21,6 @@ const Header = () => {
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
         navigate("/browse")
       } else {
-        // User is signed out
         dispatch(removeUser())
         navigate("/")
       }
@@ -42,8 +41,12 @@ const Header = () => {
     });
   }
 
-  const handleSearch = () =>{
+  const handleSearch = () => {
     navigate("/search")
+  }
+
+  const handleLanguageChange = (e ) =>{
+     dispatch(chnageLanguage(e.target.value))
   }
 
   return (
@@ -56,9 +59,21 @@ const Header = () => {
       </div>
       {user?.email && (
         <div className='relative flex'>
-          <div className='mx-10 mt-1 cursor-pointer' onClick={handleSearch }>
+          <div className='text-black bg-gray-700 px-3 py-2 rounded-sm font-semibold'>
+            <select onChange={handleLanguageChange} >
+              {
+                SUPPORTED_LANGUAGE.map((language) => (
+                  <option key={language.identifier} value={language.identifier}>{language.name}</option>
+                ))
+              }
+            </select>
+
+
+
+          </div>
+          <div className='mx-10 mt-1 cursor-pointer' onClick={handleSearch}>
             <div className="text-white text-xl flex justify-center items-center">
-              <span className='mr-3 fa-lg'><i class="fas fa-search"></i> </span>
+              <span className='mr-3 fa-lg'><i className="fas fa-search"></i> </span>
               Sreach
             </div>
           </div>

@@ -1,11 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import lang from '../utils/languageConst'
 
 const GptSearchBar = () => {
+    const langKey = useSelector((store: any) => store.config.lang)
     return (
         <>
             <div className="px-4 md:px-12 py-3 text-white text-center w-full ">
-                <h1 className="text-3xl md:text-5xl mb-3 font-bold">Let AI be your Movie Guru!</h1>
-                <p className="text-gray-400 text-sm md:text-lg">Discover Family-Friendly Flicks for a Perfect Movie Night</p>
+                <h1 className="text-3xl md:text-5xl mb-3 font-bold">{lang[langKey].searchPageH1Text}</h1>
+                <p className="text-gray-400 text-sm md:text-lg">{lang[langKey].searchPageSmallText}</p>
             </div>
             <div className="px-4 md:px-36 py-3 sticky top-[68px] z-[99999] pt-10"
             //   style={{ background: `rgba(20, 20, 20, ${searchOpacity})` }}
@@ -18,7 +21,7 @@ const GptSearchBar = () => {
                             </span>
                             <input
                                 type="text"
-                                placeholder="Search Movies, Show and more"
+                                placeholder={lang[langKey].gptSearchPlaceHolder}
                                 className={`py-4 md:py-6 pl-4 pr-12 md:px-14 w-full bg-gray-600 bg-opacity-70 rounded focus:bg-opacity-100 focus-visible:outline-none text-lg`}
                             />
 
@@ -34,7 +37,7 @@ const GptSearchBar = () => {
                             className={`py-4 md:py-6 w-24 px-2 md:px-20 flex items-center justify-center bg-purple-800 rounded text-white disabled:bg-purple-800 text-xl cursor-pointer`}
                         >
                             <i className="fa-solid fa-wand-magic-sparkles mr-3"></i>
-                         Search
+                            {lang[langKey].serach}
                         </button>
                     </div>
                     <p className='text-xs mt-1 text-slate-500'>

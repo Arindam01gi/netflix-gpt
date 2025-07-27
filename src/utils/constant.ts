@@ -12,3 +12,17 @@ export const API_OPTIONS = {
 
 
 export const IMAGE_CDN  = "https://image.tmdb.org/t/p/w780/"
+export const SUPPORTED_LANGUAGE = [
+  {
+    identifier : "en",
+    name : "English"
+  },
+  {
+    identifier : "hindi",
+    name : "Hindi"
+  },
+  {
+    identifier : "bengali",
+    name : "Bengali"
+  },
+]
