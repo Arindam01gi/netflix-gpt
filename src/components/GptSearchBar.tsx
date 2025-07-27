@@ -34,7 +34,7 @@ const GptSearchBar = () => {
                                 </p>}
                         </div>
                         <button
-                            className={`py-4 md:py-6 w-24 px-2 md:px-20 flex items-center justify-center bg-purple-800 rounded text-white disabled:bg-purple-800 text-xl cursor-pointer`}
+                            className={`py-4 md:py-6 w-24 px-2 md:px-32 flex items-center justify-center bg-purple-800 rounded text-white disabled:bg-purple-800 text-xl cursor-pointer text-nowrap`}
                         >
                             <i className="fa-solid fa-wand-magic-sparkles mr-3"></i>
                             {lang[langKey].serach}

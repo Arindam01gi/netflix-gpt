@@ -7,12 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { addUser, removeUser } from '../store/userSlice';
 import { LOGO, SUPPORTED_LANGUAGE } from '../utils/constant';
 import { chnageLanguage } from '../store/configSlice';
+import lang from '../utils/languageConst'; // Import the lang object
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const user = useSelector((state) => state.user);
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const langKey = useSelector((store) => store.config.lang) // Get language key from store
+
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -45,8 +48,8 @@ const Header = () => {
     navigate("/search")
   }
 
-  const handleLanguageChange = (e ) =>{
-     dispatch(chnageLanguage(e.target.value))
+  const handleLanguageChange = (e) => {
+    dispatch(chnageLanguage(e.target.value))
   }
 
   return (
@@ -60,21 +63,18 @@ const Header = () => {
       {user?.email && (
         <div className='relative flex'>
           <div className='text-black bg-gray-700 px-3 py-2 rounded-sm font-semibold'>
-            <select onChange={handleLanguageChange} >
+            <select onChange={handleLanguageChange} value={langKey}>
               {
                 SUPPORTED_LANGUAGE.map((language) => (
                   <option key={language.identifier} value={language.identifier}>{language.name}</option>
                 ))
               }
             </select>
-
-
-
           </div>
           <div className='mx-10 mt-1 cursor-pointer' onClick={handleSearch}>
             <div className="text-white text-xl flex justify-center items-center">
               <span className='mr-3 fa-lg'><i className="fas fa-search"></i> </span>
-              Sreach
+              {lang[langKey].serach} 
             </div>
           </div>
           <div>
