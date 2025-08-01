@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import GptSearchBar from './GptsearchBar'
+import GptMovieSuggestion from './GptMovieSuggestion'
 
 const Search = () => {
   return (
@@ -13,7 +14,7 @@ const Search = () => {
         // searchOpacity={searchOpacity}
          />
         <div className="mt-3 px-4 md:px-12 py-3 min-h-[700px]">
-          {/* <SearchResult /> */}
+          <GptMovieSuggestion />
         </div>
       </div>
     </div>
