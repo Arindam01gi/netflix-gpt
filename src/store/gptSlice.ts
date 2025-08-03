@@ -4,12 +4,12 @@ const gptSlice = createSlice({
   name: "gpt",
   initialState: {
     movieResults: null,
-    movieNames: null,
+    movieName: null,
   },
   reducers: {
     addGptMovieResult: (state, action) => {
-      const { movieNames, movieResults } = action.payload;
-      state.movieNames = movieNames
+      const { movieName, movieResults } = action.payload;
+      state.movieName = movieName
       state.movieResults = movieResults
     },
   },

@@ -14,7 +14,7 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const langKey = useSelector((store) => store.config.lang) // Get language key from store
+  const langKey = useSelector((store) => store.config.lang)
 
 
   useEffect(() => {
@@ -62,11 +62,11 @@ const Header = () => {
       </div>
       {user?.email && (
         <div className='relative flex'>
-          <div className='text-black bg-gray-700 px-3 py-2 rounded-sm font-semibold'>
-            <select onChange={handleLanguageChange} value={langKey}>
+          <div className='text-black bg-gray-700 px-3 py-2 rounded-sm font-semibold text-white'>
+            <select onChange={handleLanguageChange} value={langKey} >
               {
                 SUPPORTED_LANGUAGE.map((language) => (
-                  <option key={language.identifier} value={language.identifier}>{language.name}</option>
+                  <option className=' bg-slate-700' key={language.identifier} value={language.identifier}>{language.name}</option>
                 ))
               }
             </select>
