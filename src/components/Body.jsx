@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Search from './Search'
 import Header from './Header' // Import the Header component
 import { Outlet } from 'react-router-dom' // Import Outlet for nested routes
+import TvSeries from './TvSeries'
+import NewPopular from './NewPopular'
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -27,6 +29,14 @@ const Body = () => {
         {
           path: "/search",
           element: <Search />
+        },
+        {
+          path : "/tvseries",
+          element : <TvSeries />
+        },
+        {
+          path : "/new",
+          element : <NewPopular />
         }
       ]
     }

@@ -61,6 +61,15 @@ const Header = () => {
         />
       </div>
       {user?.email && (
+        <div className='flex text-white gap-6 text-lg cursor-pointer'>
+          <p onClick={() =>(navigate("/browse"))}>Home</p>
+          <p onClick={() =>(navigate("/tvseries"))}>TV Show</p>
+          <p onClick={() =>(navigate("/new"))}>New & Popular</p>
+        </div>
+
+      )}
+
+      {user?.email && (
         <div className='relative flex'>
           <div className='text-black bg-gray-700 px-3 py-2 rounded-sm font-semibold text-white'>
             <select onChange={handleLanguageChange} value={langKey} >
@@ -74,7 +83,7 @@ const Header = () => {
           <div className='mx-10 mt-1 cursor-pointer' onClick={handleSearch}>
             <div className="text-white text-xl flex justify-center items-center">
               <span className='mr-3 fa-lg'><i className="fas fa-search"></i> </span>
-              {lang[langKey].serach} 
+              {lang[langKey].serach}
             </div>
           </div>
           <div>
