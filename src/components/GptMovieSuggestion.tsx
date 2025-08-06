@@ -6,7 +6,6 @@ import MovieList from './MovieList'
 const GptMovieSuggestion = () => {
   const gpt = useSelector((store: any) => store.gpt)
   const { movieResults, movieName } = gpt
-  console.log("movieResults", movieResults)
 
 
   return (

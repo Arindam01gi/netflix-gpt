@@ -2,10 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import useMovieTrailer from '../hooks/useMovieTrailer'
 
-const VideoBackGround = ({ movie_id }) => {
+const VideoBackGround = ({ id ,type}) => {
 
-    const trailerVideo = useSelector((store: any) => store.movies?.trailerVideo)
-    useMovieTrailer(movie_id)
+    const trailerVideo = type=="movie" ?
+     useSelector((store: any) => store.movies?.trailerVideo) : 
+     useSelector((store :any) => store.tv?.trailerVideo)
+     console.log("trailerVideo",trailerVideo)
+    useMovieTrailer(id)
     return (
         <div className='overflow-x-hidden'>
             <iframe
