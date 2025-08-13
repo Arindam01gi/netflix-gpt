@@ -11,7 +11,7 @@ const TVMainContainer = () => {
 
     const mainSeries = series[0]
     console.log("series id",mainSeries)
-    useTrendingTvSeries(mainSeries.id)
+    // useTrendingTvSeries(mainSeries.id)
 
 
 
