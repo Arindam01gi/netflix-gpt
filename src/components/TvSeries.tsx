@@ -5,14 +5,14 @@ import { addTendingTvSeries } from '../store/tvSlice'
 import useTrendingTvSeries from '../hooks/useTrendingTvSeries'
 import TVMainContainer from './tv/TVMainContainer'
 import TVSecondaryContainer from './tv/TVSecondaryContainer'
+import { addArraivingTodayTvSeries } from '../store/tvSlice'
+import useArraivingTodayTvSeries from '../hooks/useArraivingTodayTvSeries'
 
 const TvSeries = () => {
 
-    const TvSeries = useSelector((store :any) => store.tv)
-    console.log("TvSeries",TvSeries)
-
+    const TvSeries = useSelector((store: any) => store.tv)
     useTrendingTvSeries();
-
+    useArraivingTodayTvSeries();
     
 
     return (

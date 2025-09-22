@@ -1,8 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import MovieList from '../MovieList'
 
 const TVSecondaryContainer = () => {
+  const series = useSelector((store : any)=> store.tv)
+  console.log("series",series)
   return (
-    <div>TVSecondaryContainer</div>
+    <div className='-mt-40 z-20'>
+    <div className='overflow-x-hidden my-5'>
+      {series.arraivingTodayTvSeries && <MovieList title={"Arraiving Today"} movies= {series.arraivingTodayTvSeries}/>}
+    </div>
+    </div>
   )
 }
 
