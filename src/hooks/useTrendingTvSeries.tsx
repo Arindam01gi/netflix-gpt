@@ -17,17 +17,6 @@ const useTrendingTvSeries = () => {
         }
     }
 
-    // const getTvSeriesVideo  = async() =>{
-    //     try{
-    //         const data = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`,API_OPTIONS)
-    //         const json = await data.json()
-    //         dispatch(addTvSeriesTrailer(json))
-
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // }
-
     useEffect(() =>{
         getTrendingSeriesList()
     },[])

@@ -3,6 +3,7 @@ import VideoTitle from '../VideoTitle'
 import VideoBackGround from '../VideoBackGround'
 import { useDispatch, useSelector } from 'react-redux'
 import useTrendingTvSeries from '../../hooks/useTrendingTvSeries'
+import useTvSeriesTrailer from '../../hooks/useTvSeriesTrailer'
 
 const TVMainContainer = () => {
     const series = useSelector((store: any) => store.tv?.terndingTvSeries)
@@ -10,8 +11,7 @@ const TVMainContainer = () => {
     if (!series) return null
 
     const mainSeries = series[0]
-    console.log("series id",mainSeries)
-    // useTrendingTvSeries(mainSeries.id)
+    // useTvSeriesTrailer(mainSeries.id)
 
 
 
