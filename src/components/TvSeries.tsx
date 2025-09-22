@@ -7,11 +7,15 @@ import TVMainContainer from './tv/TVMainContainer'
 import TVSecondaryContainer from './tv/TVSecondaryContainer'
 import { addArraivingTodayTvSeries } from '../store/tvSlice'
 import useArraivingTodayTvSeries from '../hooks/useArraivingTodayTvSeries'
+import useTopRatedTvSeries from '../hooks/useTopRatedTvSeries'
+import usePopularMovies from '../hooks/usePopularMovies'
 
 const TvSeries = () => {
 
     useTrendingTvSeries();
     useArraivingTodayTvSeries();
+    useTopRatedTvSeries();
+    usePopularMovies();
 
     
 

@@ -7,6 +7,7 @@ const tvSlice = createSlice({
     tvSeriesTrailer: null,
     arraivingTodayTvSeries: null,
     topRatedTvSeries: null,
+    popularTvSeries : null,
   },
   reducers: {
     addTendingTvSeries: (state, action) => {
@@ -21,6 +22,9 @@ const tvSlice = createSlice({
     addTopRatedTvSeries: (state, action) => {
       state.topRatedTvSeries = action.payload;
     },
+    addPopularTvSeries: (state,action) =>{
+        state.popularTvSeries = action.payload
+    }
   },
 });
 
@@ -29,6 +33,7 @@ export const {
   addTvSeriesTrailer,
   addArraivingTodayTvSeries,
   addTopRatedTvSeries,
+  addPopularTvSeries
 } = tvSlice.actions;
 
 export default tvSlice.reducer;
