@@ -10,6 +10,9 @@ const TVSecondaryContainer = () => {
     <div className='overflow-x-hidden my-5'>
       {series.arraivingTodayTvSeries && <MovieList title={"Arraiving Today"} movies= {series.arraivingTodayTvSeries}/>}
     </div>
+    <div className='overflow-x-hidden my-5'>
+      {series.topRatedTvSeries && <MovieList title={"Top Rated"} movies= {series.topRatedTvSeries}/>}
+    </div>
     </div>
   )
 }
